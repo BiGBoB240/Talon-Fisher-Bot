@@ -155,8 +155,8 @@ namespace InputManager_Example
 
         void hook_End()
         {
-            MouseHook.MouseEvent -= new MouseHook.MouseEventEventHandler(MouseHook_MouseEvent);
-            MouseHook.MouseMove -= new MouseHook.MouseMoveEventHandler(MouseHook_MouseMove);
+            MouseHook.MouseEvent -= MouseHook_MouseEvent;
+            MouseHook.MouseMove -= MouseHook_MouseMove;
             MouseHook.UninstallHook();
         }
 
