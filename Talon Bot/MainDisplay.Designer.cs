@@ -1,4 +1,4 @@
-﻿namespace InputManager_Example
+﻿namespace Talon_Bot
 {
     partial class MainDisplay
     {
@@ -28,219 +28,290 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.btn_set_next_day_position = new System.Windows.Forms.Button();
+            this.btn_set_city_position = new System.Windows.Forms.Button();
+            this.list_next_day_positions = new System.Windows.Forms.ListBox();
+            this.label_city_position = new System.Windows.Forms.Label();
+            this.btn_start = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_set_ticket_button_position = new System.Windows.Forms.Button();
+            this.label_ticket_button_position = new System.Windows.Forms.Label();
+            this.label_confirm_button_position = new System.Windows.Forms.Label();
+            this.btn_confirm_ticket_postion = new System.Windows.Forms.Button();
+            this.label_reload_page_position = new System.Windows.Forms.Label();
+            this.btn_reload_page_position = new System.Windows.Forms.Button();
+            this.speed_textbox = new System.Windows.Forms.TextBox();
+            this.btn_set_speed = new System.Windows.Forms.Button();
+            this.label_additional_check_position = new System.Windows.Forms.Label();
+            this.btn_Addcheck_position = new System.Windows.Forms.Button();
+            this.btn_manual_enter = new System.Windows.Forms.Button();
+            this.manual_textBox = new System.Windows.Forms.TextBox();
+            this.btn_save_config = new System.Windows.Forms.Button();
+            this.btn_load_config = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_set_next_day_position
             // 
-            this.button1.Location = new System.Drawing.Point(303, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Next day point";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_set_next_day_position.Location = new System.Drawing.Point(454, 20);
+            this.btn_set_next_day_position.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_set_next_day_position.Name = "btn_set_next_day_position";
+            this.btn_set_next_day_position.Size = new System.Drawing.Size(149, 35);
+            this.btn_set_next_day_position.TabIndex = 1;
+            this.btn_set_next_day_position.Text = "Set next day point";
+            this.btn_set_next_day_position.UseVisualStyleBackColor = true;
+            this.btn_set_next_day_position.Click += new System.EventHandler(this.btn_set_next_day_position_Click);
             // 
-            // button2
+            // btn_set_city_position
             // 
-            this.button2.Location = new System.Drawing.Point(303, 83);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(78, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "City point";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_set_city_position.Location = new System.Drawing.Point(454, 163);
+            this.btn_set_city_position.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_set_city_position.Name = "btn_set_city_position";
+            this.btn_set_city_position.Size = new System.Drawing.Size(149, 35);
+            this.btn_set_city_position.TabIndex = 2;
+            this.btn_set_city_position.Text = "City point";
+            this.btn_set_city_position.UseVisualStyleBackColor = true;
+            this.btn_set_city_position.Click += new System.EventHandler(this.btn_set_city_position_Click);
             // 
-            // listBox2
+            // list_next_day_positions
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(12, 13);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(285, 316);
-            this.listBox2.TabIndex = 3;
+            this.list_next_day_positions.FormattingEnabled = true;
+            this.list_next_day_positions.ItemHeight = 20;
+            this.list_next_day_positions.Location = new System.Drawing.Point(18, 20);
+            this.list_next_day_positions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.list_next_day_positions.Name = "list_next_day_positions";
+            this.list_next_day_positions.Size = new System.Drawing.Size(413, 484);
+            this.list_next_day_positions.TabIndex = 3;
+            // 
+            // label_city_position
+            // 
+            this.label_city_position.AutoSize = true;
+            this.label_city_position.Location = new System.Drawing.Point(459, 204);
+            this.label_city_position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_city_position.Name = "label_city_position";
+            this.label_city_position.Size = new System.Drawing.Size(74, 20);
+            this.label_city_position.TabIndex = 4;
+            this.label_city_position.Text = "City point";
+            // 
+            // btn_start
+            // 
+            this.btn_start.Location = new System.Drawing.Point(454, 471);
+            this.btn_start.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_start.Name = "btn_start";
+            this.btn_start.Size = new System.Drawing.Size(149, 35);
+            this.btn_start.TabIndex = 5;
+            this.btn_start.Text = "Start";
+            this.btn_start.UseVisualStyleBackColor = true;
+            this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(621, 20);
+            this.btn_delete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(158, 35);
+            this.btn_delete.TabIndex = 6;
+            this.btn_delete.Text = "Delete day point";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_set_ticket_button_position
+            // 
+            this.btn_set_ticket_button_position.Location = new System.Drawing.Point(621, 163);
+            this.btn_set_ticket_button_position.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_set_ticket_button_position.Name = "btn_set_ticket_button_position";
+            this.btn_set_ticket_button_position.Size = new System.Drawing.Size(158, 35);
+            this.btn_set_ticket_button_position.TabIndex = 7;
+            this.btn_set_ticket_button_position.Text = "Get ticket";
+            this.btn_set_ticket_button_position.UseVisualStyleBackColor = true;
+            this.btn_set_ticket_button_position.Click += new System.EventHandler(this.btn_set_ticket_button_position_Click);
+            // 
+            // label_ticket_button_position
+            // 
+            this.label_ticket_button_position.AutoSize = true;
+            this.label_ticket_button_position.Location = new System.Drawing.Point(629, 204);
+            this.label_ticket_button_position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_ticket_button_position.Name = "label_ticket_button_position";
+            this.label_ticket_button_position.Size = new System.Drawing.Size(78, 20);
+            this.label_ticket_button_position.TabIndex = 8;
+            this.label_ticket_button_position.Text = "Get ticket";
+            // 
+            // label_confirm_button_position
+            // 
+            this.label_confirm_button_position.AutoSize = true;
+            this.label_confirm_button_position.Location = new System.Drawing.Point(629, 269);
+            this.label_confirm_button_position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_confirm_button_position.Name = "label_confirm_button_position";
+            this.label_confirm_button_position.Size = new System.Drawing.Size(106, 20);
+            this.label_confirm_button_position.TabIndex = 10;
+            this.label_confirm_button_position.Text = "Confirm ticket";
+            // 
+            // btn_confirm_ticket_postion
+            // 
+            this.btn_confirm_ticket_postion.Location = new System.Drawing.Point(621, 229);
+            this.btn_confirm_ticket_postion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_confirm_ticket_postion.Name = "btn_confirm_ticket_postion";
+            this.btn_confirm_ticket_postion.Size = new System.Drawing.Size(158, 35);
+            this.btn_confirm_ticket_postion.TabIndex = 9;
+            this.btn_confirm_ticket_postion.Text = "Confirm ticket";
+            this.btn_confirm_ticket_postion.UseVisualStyleBackColor = true;
+            this.btn_confirm_ticket_postion.Click += new System.EventHandler(this.btn_confirm_ticket_postion_Click);
+            // 
+            // label_reload_page_position
+            // 
+            this.label_reload_page_position.AutoSize = true;
+            this.label_reload_page_position.Location = new System.Drawing.Point(460, 269);
+            this.label_reload_page_position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_reload_page_position.Name = "label_reload_page_position";
+            this.label_reload_page_position.Size = new System.Drawing.Size(130, 20);
+            this.label_reload_page_position.TabIndex = 12;
+            this.label_reload_page_position.Text = "Reload page pos";
+            // 
+            // btn_reload_page_position
+            // 
+            this.btn_reload_page_position.Location = new System.Drawing.Point(454, 229);
+            this.btn_reload_page_position.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_reload_page_position.Name = "btn_reload_page_position";
+            this.btn_reload_page_position.Size = new System.Drawing.Size(149, 35);
+            this.btn_reload_page_position.TabIndex = 11;
+            this.btn_reload_page_position.Text = "Reload page";
+            this.btn_reload_page_position.UseVisualStyleBackColor = true;
+            this.btn_reload_page_position.Click += new System.EventHandler(this.btn_refresh_page_position_Click);
+            // 
+            // speed_textbox
+            // 
+            this.speed_textbox.Location = new System.Drawing.Point(457, 114);
+            this.speed_textbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.speed_textbox.Name = "speed_textbox";
+            this.speed_textbox.Size = new System.Drawing.Size(80, 26);
+            this.speed_textbox.TabIndex = 13;
+            this.speed_textbox.Text = "300";
+            // 
+            // btn_set_speed
+            // 
+            this.btn_set_speed.Location = new System.Drawing.Point(621, 110);
+            this.btn_set_speed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_set_speed.Name = "btn_set_speed";
+            this.btn_set_speed.Size = new System.Drawing.Size(156, 35);
+            this.btn_set_speed.TabIndex = 14;
+            this.btn_set_speed.Text = "Set speed";
+            this.btn_set_speed.UseVisualStyleBackColor = true;
+            this.btn_set_speed.Click += new System.EventHandler(this.btn_set_speed_Click);
+            // 
+            // label_additional_check_position
+            // 
+            this.label_additional_check_position.AutoSize = true;
+            this.label_additional_check_position.Location = new System.Drawing.Point(460, 342);
+            this.label_additional_check_position.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_additional_check_position.Name = "label_additional_check_position";
+            this.label_additional_check_position.Size = new System.Drawing.Size(125, 20);
+            this.label_additional_check_position.TabIndex = 16;
+            this.label_additional_check_position.Text = "Background pos";
+            // 
+            // btn_Addcheck_position
+            // 
+            this.btn_Addcheck_position.Location = new System.Drawing.Point(454, 301);
+            this.btn_Addcheck_position.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_Addcheck_position.Name = "btn_Addcheck_position";
+            this.btn_Addcheck_position.Size = new System.Drawing.Size(149, 35);
+            this.btn_Addcheck_position.TabIndex = 15;
+            this.btn_Addcheck_position.Text = "Background";
+            this.btn_Addcheck_position.UseVisualStyleBackColor = true;
+            this.btn_Addcheck_position.Click += new System.EventHandler(this.btn_Addcheck_position_Click);
+            // 
+            // btn_manual_enter
+            // 
+            this.btn_manual_enter.Location = new System.Drawing.Point(621, 65);
+            this.btn_manual_enter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_manual_enter.Name = "btn_manual_enter";
+            this.btn_manual_enter.Size = new System.Drawing.Size(158, 35);
+            this.btn_manual_enter.TabIndex = 18;
+            this.btn_manual_enter.Text = "Manual enter";
+            this.btn_manual_enter.UseVisualStyleBackColor = true;
+            this.btn_manual_enter.Click += new System.EventHandler(this.btn_manual_enter_Click);
+            // 
+            // manual_textBox
+            // 
+            this.manual_textBox.Location = new System.Drawing.Point(457, 70);
+            this.manual_textBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.manual_textBox.Name = "manual_textBox";
+            this.manual_textBox.Size = new System.Drawing.Size(108, 26);
+            this.manual_textBox.TabIndex = 17;
+            this.manual_textBox.Text = "0, 0";
+            // 
+            // btn_save_config
+            // 
+            this.btn_save_config.Location = new System.Drawing.Point(621, 424);
+            this.btn_save_config.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_save_config.Name = "btn_save_config";
+            this.btn_save_config.Size = new System.Drawing.Size(156, 35);
+            this.btn_save_config.TabIndex = 19;
+            this.btn_save_config.Text = "Save config";
+            this.btn_save_config.UseVisualStyleBackColor = true;
+            this.btn_save_config.Click += new System.EventHandler(this.btn_save_config_Click);
+            // 
+            // btn_load_config
+            // 
+            this.btn_load_config.Location = new System.Drawing.Point(621, 469);
+            this.btn_load_config.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_load_config.Name = "btn_load_config";
+            this.btn_load_config.Size = new System.Drawing.Size(156, 35);
+            this.btn_load_config.TabIndex = 20;
+            this.btn_load_config.Text = "Load config";
+            this.btn_load_config.UseVisualStyleBackColor = true;
+            this.btn_load_config.Click += new System.EventHandler(this.btn_load_config_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 110);
+            this.label1.Location = new System.Drawing.Point(544, 117);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "City point";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(303, 306);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Start";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(393, 13);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(105, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Delete day point";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(393, 83);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(105, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Get ticket";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.label1.Size = new System.Drawing.Size(59, 20);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "millisec";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(399, 110);
+            this.label2.Location = new System.Drawing.Point(570, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Get ticket";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(399, 157);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Confirm ticket";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(393, 131);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(82, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Confirm ticket";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(307, 157);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Reload page pos";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(303, 131);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(81, 23);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Reload page";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(465, 280);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(92, 20);
-            this.textBox1.TabIndex = 13;
-            this.textBox1.Text = "300";
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(465, 306);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 23);
-            this.button8.TabIndex = 14;
-            this.button8.Text = "Speed in milisec";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(307, 205);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Background pos";
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(303, 178);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(82, 23);
-            this.button9.TabIndex = 15;
-            this.button9.Text = "Background";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(393, 47);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(105, 23);
-            this.button10.TabIndex = 18;
-            this.button10.Text = "Manual enter";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(304, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(77, 20);
-            this.textBox2.TabIndex = 17;
-            this.textBox2.Text = "0, 0";
+            this.label2.Size = new System.Drawing.Size(31, 20);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "x, y";
             // 
             // MainDisplay
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 351);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.button6);
+            this.ClientSize = new System.Drawing.Size(798, 526);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_load_config);
+            this.Controls.Add(this.btn_save_config);
+            this.Controls.Add(this.btn_manual_enter);
+            this.Controls.Add(this.manual_textBox);
+            this.Controls.Add(this.label_additional_check_position);
+            this.Controls.Add(this.btn_Addcheck_position);
+            this.Controls.Add(this.btn_set_speed);
+            this.Controls.Add(this.speed_textbox);
+            this.Controls.Add(this.label_reload_page_position);
+            this.Controls.Add(this.btn_reload_page_position);
+            this.Controls.Add(this.label_confirm_button_position);
+            this.Controls.Add(this.btn_confirm_ticket_postion);
+            this.Controls.Add(this.label_ticket_button_position);
+            this.Controls.Add(this.btn_set_ticket_button_position);
+            this.Controls.Add(this.btn_delete);
+            this.Controls.Add(this.btn_start);
+            this.Controls.Add(this.label_city_position);
+            this.Controls.Add(this.list_next_day_positions);
+            this.Controls.Add(this.btn_set_city_position);
+            this.Controls.Add(this.btn_set_next_day_position);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "MainDisplay";
+            this.ShowIcon = false;
             this.Text = "Talon Fisher v1";
             this.Load += new System.EventHandler(this.MainDisplay_Load);
             this.ResumeLayout(false);
@@ -249,24 +320,28 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button btn_set_next_day_position;
+        private System.Windows.Forms.Button btn_set_city_position;
+        private System.Windows.Forms.ListBox list_next_day_positions;
+        private System.Windows.Forms.Label label_city_position;
+        private System.Windows.Forms.Button btn_start;
+        private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Button btn_set_ticket_button_position;
+        private System.Windows.Forms.Label label_ticket_button_position;
+        private System.Windows.Forms.Label label_confirm_button_position;
+        private System.Windows.Forms.Button btn_confirm_ticket_postion;
+        private System.Windows.Forms.Label label_reload_page_position;
+        private System.Windows.Forms.Button btn_reload_page_position;
+        private System.Windows.Forms.TextBox speed_textbox;
+        private System.Windows.Forms.Button btn_set_speed;
+        private System.Windows.Forms.Label label_additional_check_position;
+        private System.Windows.Forms.Button btn_Addcheck_position;
+        private System.Windows.Forms.Button btn_manual_enter;
+        private System.Windows.Forms.TextBox manual_textBox;
+        private System.Windows.Forms.Button btn_save_config;
+        private System.Windows.Forms.Button btn_load_config;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
