@@ -54,13 +54,13 @@ namespace Talon_Bot
         [DllImport("user32.dll")]
         private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 
-        public static bool IsColorMatch(int x, int y, Color targetColor)
+        public static bool ComparePixelColor(int x, int y, Color targetColor)
         {
-                IntPtr hdc = GetDC(IntPtr.Zero); // Получаем доступ к экрану
-                int pixel = GetPixel(hdc, x, y); // Считываем цвет пикселя
-                ReleaseDC(IntPtr.Zero, hdc); // Освобождаем дескриптор
+                IntPtr hdc = GetDC(IntPtr.Zero); 
+                int pixel = GetPixel(hdc, x, y); 
+                ReleaseDC(IntPtr.Zero, hdc); 
 
-                // Разбираем цвет
+
                 int r = (pixel & 0x000000FF);
                 int g = (pixel & 0x0000FF00) >> 8;
                 int b = (pixel & 0x00FF0000) >> 16;
@@ -220,7 +220,7 @@ namespace Talon_Bot
                 writer.WriteLine($"AdditionalCheck_Pos_X={AdditionalCheck_Pos_X}");
                 writer.WriteLine($"AdditionalCheck_Pos_Y={AdditionalCheck_Pos_Y}");
 
-                // Сохранение элементов ListBox
+
                 foreach (var item in list_next_day_positions.Items)
                 {
                     writer.WriteLine(item.ToString());
@@ -242,7 +242,7 @@ namespace Talon_Bot
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string[] lines = File.ReadAllLines(openFileDialog.FileName);
-                list_next_day_positions.Items.Clear(); // Очищаем ListBox перед загрузкой
+                list_next_day_positions.Items.Clear();
 
                 foreach (string line in lines)
                 {
@@ -263,7 +263,7 @@ namespace Talon_Bot
                     }
                 }
 
-                // Обновляем Label
+
                 label_city_position.Text = $"{City_Pos_X}, {City_Pos_Y}";
                 label_ticket_button_position.Text = $"{Ticket_Pos_X}, {Ticket_Pos_Y}";
                 label_confirm_button_position.Text = $"{Confirm_Pos_X}, {Confirm_Pos_Y}";
@@ -287,11 +287,11 @@ namespace Talon_Bot
                         int.TryParse(parts[0].Trim(), out int x) &&
                         int.TryParse(parts[1].Trim(), out int y))
                     {
-                        System.Threading.Thread.Sleep(50); // Пауза для наглядності
+                        System.Threading.Thread.Sleep(50); 
                         bool firstCheck = false;
                         bool SeconCheck = false;
-                        firstCheck = IsColorMatch(City_Pos_X, City_Pos_Y, target);
-                        SeconCheck = IsColorMatch(AdditionalCheck_Pos_X, AdditionalCheck_Pos_Y, target);
+                        firstCheck = ComparePixelColor(City_Pos_X, City_Pos_Y, target);
+                        SeconCheck = ComparePixelColor(AdditionalCheck_Pos_X, AdditionalCheck_Pos_Y, target);
                         if (firstCheck && SeconCheck == false)
                         {
                             isRunning = false;
@@ -300,17 +300,17 @@ namespace Talon_Bot
                         }
 
                         Mouse.Move(x, y);
-                        System.Threading.Thread.Sleep(delayTime/7); // Пауза для наглядності
+                        System.Threading.Thread.Sleep(delayTime/7); 
                         Mouse.PressButton(Mouse.MouseKeys.Left);
-                        System.Threading.Thread.Sleep(delayTime); // Пауза для наглядності
+                        System.Threading.Thread.Sleep(delayTime); 
 
                     }
                 }
                 if (!isRunning || keyString == "S") break;
-                System.Threading.Thread.Sleep(200); // Пауза для наглядності
+                System.Threading.Thread.Sleep(200); 
                 Mouse.Move(Refresh_Pos_X, Refresh_Pos_Y);
                 Mouse.PressButton(Mouse.MouseKeys.Left);
-                System.Threading.Thread.Sleep(330); // Пауза для наглядності
+                System.Threading.Thread.Sleep(330); 
             }
         }
 
@@ -318,13 +318,13 @@ namespace Talon_Bot
         public void getTalon()
         {
             Mouse.Move(City_Pos_X, City_Pos_Y);
-            System.Threading.Thread.Sleep(50); // Пауза для наглядності
+            System.Threading.Thread.Sleep(50); 
             Mouse.PressButton(Mouse.MouseKeys.Left);
-            System.Threading.Thread.Sleep(300); // Пауза для наглядності
+            System.Threading.Thread.Sleep(300); 
             Mouse.Move(Ticket_Pos_X, Ticket_Pos_Y);
-            System.Threading.Thread.Sleep(210); // Пауза для наглядності
+            System.Threading.Thread.Sleep(210); 
             Mouse.PressButton(Mouse.MouseKeys.Left);
-            System.Threading.Thread.Sleep(2000); // Пауза для наглядності
+            System.Threading.Thread.Sleep(2000); 
             Mouse.Move(Confirm_Pos_X, Confirm_Pos_Y); 
             Mouse.PressButton(Mouse.MouseKeys.Left);
         }
