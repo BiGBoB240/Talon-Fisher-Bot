@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace InputManager_Example
+namespace Talon_Bot
 {
     static class Program
     {

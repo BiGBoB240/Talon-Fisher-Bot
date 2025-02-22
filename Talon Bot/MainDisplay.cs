@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using InputManager;
+using InputManager; // https://www.codeproject.com/Articles/117657/InputManager-library-Track-user-input-and-simulate
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace InputManager_Example
+namespace Talon_Bot
 {
     public partial class MainDisplay : Form
     {
@@ -21,25 +22,24 @@ namespace InputManager_Example
         private string keyString = "";
 
         Color target = Color.FromArgb(55, 174, 108);
-        int city_Pos_X, city_Pos_Y;
-        int get_Pos_X, get_Pos_Y;
-        int confirm_Pos_X, confirm_Pos_Y;
-        int reload_Pos_X, reload_Pos_Y;
-        int background_Pos_X, background_Pos_Y;
+        int City_Pos_X, City_Pos_Y;
+        int Ticket_Pos_X, Ticket_Pos_Y;
+        int Confirm_Pos_X, Confirm_Pos_Y;
+        int Refresh_Pos_X, Refresh_Pos_Y;
+        int AdditionalCheck_Pos_X, AdditionalCheck_Pos_Y;
 
         int pos_X = 0, pos_Y = 0;
-        string Chooser = " ";
+        string CaseMenu = " ";
 
         int delayTime = 0;
         public MainDisplay()
         {
             InitializeComponent();
-
         }
 
         private void MainDisplay_Load(object sender, EventArgs e)
         {
-            delayTime = Convert.ToInt16(textBox1.Text);
+            delayTime = Convert.ToInt16(speed_textbox.Text);
             KeyboardHook.KeyDown += new KeyboardHook.KeyDownEventHandler(KeyboardHook_KeyDown);
             KeyboardHook.KeyUp += new KeyboardHook.KeyUpEventHandler(KeyboardHook_KeyUp);
             KeyboardHook.InstallHook();
@@ -54,13 +54,13 @@ namespace InputManager_Example
         [DllImport("user32.dll")]
         private static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
 
-        public static bool IsColorMatch(int x, int y, Color targetColor)
+        public static bool ComparePixelColor(int x, int y, Color targetColor)
         {
-                IntPtr hdc = GetDC(IntPtr.Zero); // Получаем доступ к экрану
-                int pixel = GetPixel(hdc, x, y); // Считываем цвет пикселя
-                ReleaseDC(IntPtr.Zero, hdc); // Освобождаем дескриптор
+                IntPtr hdc = GetDC(IntPtr.Zero); 
+                int pixel = GetPixel(hdc, x, y); 
+                ReleaseDC(IntPtr.Zero, hdc); 
 
-                // Разбираем цвет
+
                 int r = (pixel & 0x000000FF);
                 int g = (pixel & 0x0000FF00) >> 8;
                 int b = (pixel & 0x00FF0000) >> 16;
@@ -72,16 +72,10 @@ namespace InputManager_Example
 
         void KeyboardHook_KeyUp(int vkCode)
         {
-            //Everytime the users releases a certain key up,
-            //your application will go to this line
-            //Use the vKCode argument to determine which key has been released
         }
 
         void KeyboardHook_KeyDown(int vkCode)
         {
-            //Everytime the users holds a certain key down,
-            //your application will go to this line
-            //Use the vKCode argument to determine which key is held down
             keyString = ((Keys)vkCode).ToString();
             if (keyString == "S") isRunning = false;
         }
@@ -96,50 +90,53 @@ namespace InputManager_Example
         {
             if (mEvent.ToString() == "RightDown")
             {
-                switch (Chooser)
+                switch (CaseMenu)
                 {
                     case "city":
-                        city_Pos_X = pos_X;
-                        city_Pos_Y = pos_Y;
+                        City_Pos_X = pos_X;
+                        City_Pos_Y = pos_Y;
 
-                    label1.Text = city_Pos_X + ", " + city_Pos_Y;
+                    label_city_position.Text = City_Pos_X + ", " + City_Pos_Y;
 
                         break;
 
                     case "get":
-                        get_Pos_X = pos_X;
-                        get_Pos_Y = pos_Y;
+                        Ticket_Pos_X = pos_X;
+                        Ticket_Pos_Y = pos_Y;
                         
-                    label2.Text = get_Pos_X + ", " + get_Pos_Y;
+                    label_ticket_button_position.Text = Ticket_Pos_X + ", " + Ticket_Pos_Y;
 
                         break;
                     case "confirm":
-                        confirm_Pos_X = pos_X;
-                        confirm_Pos_Y = pos_Y;
-
-                    label3.Text = confirm_Pos_X + ", " + confirm_Pos_Y;
+                        Confirm_Pos_X = pos_X;
+                        Confirm_Pos_Y = pos_Y;
+                        
+                    label_confirm_button_position.Text = Confirm_Pos_X + ", " + Confirm_Pos_Y;
 
                         break;
                     case "reload":
-                        reload_Pos_X = pos_X;
-                        reload_Pos_Y = pos_Y;
+                        Refresh_Pos_X = pos_X;
+                        Refresh_Pos_Y = pos_Y;
 
-                        label4.Text = reload_Pos_X + ", " + reload_Pos_Y;
+                    label_reload_page_position.Text = Refresh_Pos_X + ", " + Refresh_Pos_Y;
 
                         break;
-                    case "background":
-                        background_Pos_X = pos_X;
-                        background_Pos_Y = pos_Y;
+                    case "Additional":
+                        AdditionalCheck_Pos_X = pos_X;
+                        AdditionalCheck_Pos_Y = pos_Y;
 
-                        label5.Text = background_Pos_X + ", " + background_Pos_Y;
+                    label_additional_check_position.Text = AdditionalCheck_Pos_X + ", " + AdditionalCheck_Pos_Y;
 
                         break;
                     case "days":
-                        listBox2.Items.Add(pos_X + ", " + pos_Y);
+
+                        list_next_day_positions.Items.Add(pos_X + ", " + pos_Y);
+                        manual_textBox.Text = pos_X + ", " + pos_Y;
+
                         break;
                 }
 
-                Chooser = " ";
+                CaseMenu = " ";
 
 
                 hook_End();
@@ -160,57 +157,128 @@ namespace InputManager_Example
             MouseHook.UninstallHook();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_set_next_day_position_Click(object sender, EventArgs e)
         {
             hook_Start();
-            Chooser = "days";
+            CaseMenu = "days";
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_set_city_position_Click(object sender, EventArgs e)
         {
             hook_Start();
-            Chooser = "city";
+            CaseMenu = "city";
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btn_set_ticket_button_position_Click(object sender, EventArgs e)
         {
             hook_Start();
-            Chooser = "get";
+            CaseMenu = "get";
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btn_confirm_ticket_postion_Click(object sender, EventArgs e)
         {
             hook_Start();
-            Chooser = "confirm";
+            CaseMenu = "confirm";
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void btn_refresh_page_position_Click(object sender, EventArgs e)
         {
             hook_Start();
-            Chooser = "reload";
+            CaseMenu = "refresh";
         }
 
-        private void button10_Click(object sender, EventArgs e)
-        {
-            listBox2.Items.Add(textBox2.Text);
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            delayTime = Convert.ToInt16(textBox1.Text);
-        }
-
-        private void button9_Click(object sender, EventArgs e)
+        private void btn_Addcheck_position_Click(object sender, EventArgs e)
         {
             hook_Start();
-            Chooser = "background";
+            CaseMenu = "Additional";
+        }
+
+        private void btn_manual_enter_Click(object sender, EventArgs e)
+        {
+            list_next_day_positions.Items.Add(manual_textBox.Text);
+        }
+
+        private void btn_set_speed_Click(object sender, EventArgs e)
+        {
+            delayTime = Convert.ToInt16(speed_textbox.Text);
+        }
+
+        private void btn_save_config_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "talonconfig.txt");
+
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.WriteLine($"City_Pos_X={City_Pos_X}");
+                writer.WriteLine($"City_Pos_Y={City_Pos_Y}");
+                writer.WriteLine($"Ticket_Pos_X={Ticket_Pos_X}");
+                writer.WriteLine($"Ticket_Pos_Y={Ticket_Pos_Y}");
+                writer.WriteLine($"Confirm_Pos_X={Confirm_Pos_X}");
+                writer.WriteLine($"Confirm_Pos_Y={Confirm_Pos_Y}");
+                writer.WriteLine($"Refresh_Pos_X={Refresh_Pos_X}");
+                writer.WriteLine($"Refresh_Pos_Y={Refresh_Pos_Y}");
+                writer.WriteLine($"AdditionalCheck_Pos_X={AdditionalCheck_Pos_X}");
+                writer.WriteLine($"AdditionalCheck_Pos_Y={AdditionalCheck_Pos_Y}");
+
+
+                foreach (var item in list_next_day_positions.Items)
+                {
+                    writer.WriteLine(item.ToString());
+                }
+
+            }
+
+            MessageBox.Show("Конфиг сохранён!");
+        }
+
+        private void btn_load_config_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Text files (*.txt)|*.txt",
+                Title = "Выберите конфиг"
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string[] lines = File.ReadAllLines(openFileDialog.FileName);
+                list_next_day_positions.Items.Clear();
+
+                foreach (string line in lines)
+                {
+                    if (line.StartsWith("City_Pos_X=")) City_Pos_X = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("City_Pos_Y=")) City_Pos_Y = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("Ticket_Pos_X=")) Ticket_Pos_X = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("Ticket_Pos_Y=")) Ticket_Pos_Y = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("Confirm_Pos_X=")) Confirm_Pos_X = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("Confirm_Pos_Y=")) Confirm_Pos_Y = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("Refresh_Pos_X=")) Refresh_Pos_X = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("Refresh_Pos_Y=")) Refresh_Pos_Y = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("AdditionalCheck_Pos_X=")) AdditionalCheck_Pos_X = int.Parse(line.Split('=')[1]);
+                    else if (line.StartsWith("AdditionalCheck_Pos_Y=")) AdditionalCheck_Pos_Y = int.Parse(line.Split('=')[1]);
+
+                    else if (line.Contains(","))
+                    {
+                        list_next_day_positions.Items.Add(line);
+                    }
+                }
+
+
+                label_city_position.Text = $"{City_Pos_X}, {City_Pos_Y}";
+                label_ticket_button_position.Text = $"{Ticket_Pos_X}, {Ticket_Pos_Y}";
+                label_confirm_button_position.Text = $"{Confirm_Pos_X}, {Confirm_Pos_Y}";
+                label_reload_page_position.Text = $"{Refresh_Pos_X}, {Refresh_Pos_Y}";
+                label_additional_check_position.Text = $"{AdditionalCheck_Pos_X}, {AdditionalCheck_Pos_Y}";
+
+                MessageBox.Show("Конфиг загружен!");
+            }
         }
 
         private void MoveMouseLoop()
         {
             while (isRunning && keyString != "S")
             {
-                foreach (var item in listBox2.Items)
+                foreach (var item in list_next_day_positions.Items)
                 {
                     if (!isRunning || keyString == "S") break;
 
@@ -219,11 +287,11 @@ namespace InputManager_Example
                         int.TryParse(parts[0].Trim(), out int x) &&
                         int.TryParse(parts[1].Trim(), out int y))
                     {
-                        System.Threading.Thread.Sleep(50); // Пауза для наглядності
+                        System.Threading.Thread.Sleep(50); 
                         bool firstCheck = false;
                         bool SeconCheck = false;
-                        firstCheck = IsColorMatch(city_Pos_X, city_Pos_Y, target);
-                        SeconCheck = IsColorMatch(background_Pos_X, background_Pos_Y, target);
+                        firstCheck = ComparePixelColor(City_Pos_X, City_Pos_Y, target);
+                        SeconCheck = ComparePixelColor(AdditionalCheck_Pos_X, AdditionalCheck_Pos_Y, target);
                         if (firstCheck && SeconCheck == false)
                         {
                             isRunning = false;
@@ -232,36 +300,36 @@ namespace InputManager_Example
                         }
 
                         Mouse.Move(x, y);
-                        System.Threading.Thread.Sleep(delayTime/7); // Пауза для наглядності
+                        System.Threading.Thread.Sleep(delayTime/7); 
                         Mouse.PressButton(Mouse.MouseKeys.Left);
-                        System.Threading.Thread.Sleep(delayTime); // Пауза для наглядності
+                        System.Threading.Thread.Sleep(delayTime); 
 
                     }
                 }
                 if (!isRunning || keyString == "S") break;
-                System.Threading.Thread.Sleep(200); // Пауза для наглядності
-                Mouse.Move(reload_Pos_X, reload_Pos_Y);
+                System.Threading.Thread.Sleep(200); 
+                Mouse.Move(Refresh_Pos_X, Refresh_Pos_Y);
                 Mouse.PressButton(Mouse.MouseKeys.Left);
-                System.Threading.Thread.Sleep(330); // Пауза для наглядності
+                System.Threading.Thread.Sleep(330); 
             }
         }
 
         
         public void getTalon()
         {
-            Mouse.Move(city_Pos_X, city_Pos_Y);
-            System.Threading.Thread.Sleep(50); // Пауза для наглядності
+            Mouse.Move(City_Pos_X, City_Pos_Y);
+            System.Threading.Thread.Sleep(50); 
             Mouse.PressButton(Mouse.MouseKeys.Left);
-            System.Threading.Thread.Sleep(300); // Пауза для наглядності
-            Mouse.Move(get_Pos_X, get_Pos_Y);
-            System.Threading.Thread.Sleep(210); // Пауза для наглядності
+            System.Threading.Thread.Sleep(300); 
+            Mouse.Move(Ticket_Pos_X, Ticket_Pos_Y);
+            System.Threading.Thread.Sleep(210); 
             Mouse.PressButton(Mouse.MouseKeys.Left);
-            System.Threading.Thread.Sleep(2000); // Пауза для наглядності
-            Mouse.Move(confirm_Pos_X, confirm_Pos_Y); 
+            System.Threading.Thread.Sleep(2000); 
+            Mouse.Move(Confirm_Pos_X, Confirm_Pos_Y); 
             Mouse.PressButton(Mouse.MouseKeys.Left);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btn_start_Click(object sender, EventArgs e)
         {
             if (mouseThread == null || !mouseThread.IsAlive)
             {
@@ -273,11 +341,11 @@ namespace InputManager_Example
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btn_delete_Click(object sender, EventArgs e)
         {
-            if (listBox2.SelectedItem != null)
+            if (list_next_day_positions.SelectedItem != null)
             {
-                listBox2.Items.Remove(listBox2.SelectedItem);
+                list_next_day_positions.Items.Remove(list_next_day_positions.SelectedItem);
             }
         }
 
