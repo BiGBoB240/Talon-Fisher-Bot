@@ -114,7 +114,7 @@ namespace Talon_Bot
                     label_confirm_button_position.Text = Confirm_Pos_X + ", " + Confirm_Pos_Y;
 
                         break;
-                    case "reload":
+                    case "refresh":
                         Refresh_Pos_X = pos_X;
                         Refresh_Pos_Y = pos_Y;
 
